@@ -79,10 +79,7 @@ def load_cluster_configs(path: str) -> List[ClusterConfig]:
 
 # ----------------- Raw REST client (no qumulo/qinternal import needed) -----------------
 #
-# /v1/debug/metrics/ and /v1/cluster/nodes/ are ordinary bearer-token-authenticated REST/JSON
-# endpoints - qinternal.api.client.rest_client.RestClient is a typed convenience wrapper around
-# exactly this, not a special protocol. See prototypes/dzhu/logical_log_monitor.py for the same
-# pattern against the same endpoints.
+# /v1/debug/metrics/ and /v1/cluster/nodes/ are ordinary bearer-token-authenticated REST endpoints
 
 
 def _build_url(config: ClusterConfig, path: str, params: Optional[Dict[str, Any]] = None) -> str:
