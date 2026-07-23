@@ -1,0 +1,18 @@
+{
+  "clusters": [
+    {
+      "name": "prod-east",
+      "host": "prod-east.example.com",
+      "port": 8000,
+      "access_token": "access-v1:...",
+      "insecure": false
+    },
+    {
+      "name": "prod-west",
+      "host": "prod-west.example.com",
+      "port": 8000,
+      "access_token": "access-v1:...",
+      "insecure": true
+    }
+  ]
+}
