@@ -6,31 +6,11 @@ global:
     scrape_timeout: 10s
 
 scrape_configs:
-  # Scrape the Qumulo cluster for OpenMetrics data.
-  - job_name: 'qumulo-cluster'
-    metrics_path: '/v2/metrics/endpoints/default/data'
-    scheme: https
-
-    # Set targets to the Qumulo cluster DNS name and port 8000. The DNS name should route to one or 
-    # more floating IP addresses. The DNS name appears as a label on metrics.
-    #
-    # If a DNS name is unavailable, specify a floating IP address.
-    #
-    # If floating IPs are unavailable, specify a static or DHCP IP address.
-    #
-    # Note: If you don't use floating IP addresses, Prometheus won't be able to scrape metrics when 
-    # the associated node becomes unavailable.
+  # per-socket TCP stats (RTT, retransmits, queue depth) for hub/spoke portal replication links.
+  - job_name: 'qumulo-portal-rpc-socket'
+    metrics_path: '/metrics'
     static_configs:
-      - targets: ['<DNS name>:8000']
-
-    # Set credentials to an access token for a user with read privileges for metrics.
-    authorization:
-      credentials: 'access-v1:<token data>'
-
-    # If you haven't configured an SSL credential on your Qumulo cluster, set `insecure_skip_verify` 
-    # to `true`.
-    tls_config:
-      insecure_skip_verify: false
+      - targets: ['portal-rpc-socket-exporter:9840']
 
   # Scrape Prometheus for OpenMetrics data.
   - job_name: 'prometheus'
