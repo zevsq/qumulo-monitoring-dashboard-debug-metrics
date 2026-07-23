@@ -68,3 +68,17 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+
+   portal-rpc-socket-exporter:
+     build: ./portal-rpc-socket-exporter
+     container_name: portal-rpc-socket-exporter
+     volumes:
+       - ./portal-rpc-socket-exporter/clusters.json:/etc/portal-rpc-socket-exporter/clusters.json:ro
+     restart: unless-stopped
+     expose:
+       - 9840
+     networks:
+       - monitor-net
+     labels:
+       org.label-schema.group: "monitoring"
+    
